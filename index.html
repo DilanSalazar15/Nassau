@@ -55,11 +55,25 @@
     </style>
     <script>
         function autoFormatAPN() {
-            const apnInput = document.getElementById('apn').value.replace(/-/g, '');
-            const formattedAPN = apnInput.replace(/^(\.{2})(\.{2})(\.{2})(\.{4})(\.{4})(\.{4})$/, (match, p1, p2, p3, p4, p5, p6) => {
-                return `${p1}-${p2}-${p3}-${p4}-${p5}-${p6}`;
-            });
-            document.getElementById('formattedAPN').innerText = formattedAPN;
+            let apnInput = document.getElementById('apn').value.replace(/-/g, '');
+
+            // Comprobar que el número tenga la longitud adecuada (18 caracteres)
+            if (apnInput.length === 18) {
+                // Separar la cadena en las partes correctas
+                let parte1 = apnInput.substring(0, 2);
+                let parte2 = apnInput.substring(2, 4);
+                let parte3 = apnInput.substring(4, 6);
+                let parte4 = apnInput.substring(6, 10);
+                let parte5 = apnInput.substring(10, 14);
+                let parte6 = apnInput.substring(14, 18);
+
+                
+            // Unir las partes con guiones
+                let formattedAPN = `${parte1}-${parte2}-${parte3}-${parte4}-${parte5}-${parte6}`;
+                document.getElementById('formattedAPN').innerText = formattedAPN;
+            } else {
+                document.getElementById('formattedAPN').innerText = 'El número debe tener exactamente 18 caracteres';
+            }
         }
         
         async function copyPart(part) {
@@ -83,7 +97,7 @@
             <div class="content">
                 <h2>APN con guiones</h2>
                 <label for="apn">Ingresa la APN:</label>
-                <input type="text" id="apn" maxlength="18" placeholder="000030085C00300000" oninput="autoFormatAPN()">
+                <input type="text" id="apn" maxlength="18" placeholder="00SB30192000140000" oninput="autoFormatAPN()">
 
                 <p id="formattedAPN"></p>
 
