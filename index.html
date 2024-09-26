@@ -31,25 +31,10 @@
             justify-content: center;
             align-items: center;
             min-width: 200px; 
-            position: relative; /* Para manejar la posición de los elementos */
-            color: black; 
-        }
-        .background {
-            background-image: url('zoom_illo_houses_cyan.png');
+            background-image: url('zoom_dotlines_white.png');
             background-size: cover; 
             background-position: right; 
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.5; /* Opacidad de la imagen de fondo */
-            z-index: 0; /* Asegura que la imagen esté detrás */
-        }
-        .content {
-            position: relative;
-            z-index: 1; /* Asegura que el contenido esté encima */
-            width: 100%; /* Asegura que el contenido ocupe el ancho completo */
+            color: black;
         }
         iframe {
             width: 100%;
@@ -77,14 +62,6 @@
             document.getElementById('formattedAPN').innerText = formattedAPN;
         }
         
-        function validarAPN() {
-            const input = document.getElementById('apn');
-            const valor = input.value;
-            // Eliminar cualquier carácter que no sea un dígito y limitar a 18 caracteres
-            input.value = valor.replace(/\D/g, '').slice(0, 18);
-            autoFormatAPN(); // Formatear después de validar
-        }
-
         async function copyPart(part) {
             try {
                 await navigator.clipboard.writeText(part);
